@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="home.html">Dashboard</a><a href="admin.html">Admin</a><a href="product.html">Product</a><a href="order.html">Orders</a><a href="users.html">Users</a><a id="logout">Logout</a>
+    </nav>
+    <h1 style="margin: 40px; color: #007bff;">Admin</h1>
+
+    <div>
+        <button id="Add-admin">
+            Add New Admin
+        </button>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Delete</th>
+            <th>Change Password</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <footer>© 2023 PizzaPassionista. All rights reserved.</footer>
+</body>
+<script>
+    let tbody = document.querySelector('tbody');
+    async function fetchapi(){
+        let api = await fetch('https://admin-api-f0qz.onrender.com/users');
+        let data = await api.json();
+        console.log(data);
+        append(data);
+    }
+    fetchapi()
+    function append(data){
+        let tr = ""
+        for(let i=0;i<data.length;i++){
+        tr += `
+        <tr>
+        <td>${data[i].id}</td>
+        <td>${data[i].name}</td>
+        <td>${data[i].email}</td>
+        <td class="delete" onclick="delet(${data[i].id})">DELETE</td>
+        <td class="change" onclick="chng(${data[i].id})">Change Password</td>
+        </tr>
+        `
+        }   
+        tbody.innerHTML = tr; 
+    }
+
+    async function delet(id){
+        let res = await fetch(`https://admin-api-f0qz.onrender.com/users/${id}`,{
+            method: "DELETE",
+            headers:{
+                "Content-Type": "application/json"
+            },
+        });
+        fetchapi();
+        let data = await res.json();
+        
+    }
+    function chng(id){
+
+    }
+    let add = document.getElementById('Add-admin');
+    add.addEventListener("click",()=>{
+        window.location.replace("ad-admin.html");
+    })
+</script>
+</html>
