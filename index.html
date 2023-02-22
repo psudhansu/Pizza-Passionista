@@ -5,8 +5,186 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .crud{
+            display: grid;
+            gap: 3px;
+        }
+        .crud input{
+            width:30%;
+          border-color: rgb(17, 91, 91);
+        }
+        .crud button{
+            width : 12%;
+            height: 35px;
+            border: none;
+            border : 2px solid rgb(0, 162, 255);
+            color : blueviolet;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div>hy</div>
+    <div class="crud">
+    <h3>Add pizza</h3>
+          <input
+            type="text"
+            id="pizza-name"
+            class="u-full-width"
+            placeholder="Name"
+          />
+          <input
+            type="text"
+            id="pizza-url"
+            class="u-full-width"
+            placeholder="Pizza url"
+          />
+          <input
+            type="number"
+            id="pizza-price"
+            class="u-full-width"
+            placeholder="price"
+          />
+          <input
+            type="text"
+            id="pizza-desc"
+            class="u-full-width"
+            placeholder="description"
+          />
+          <input
+            type="text"
+            id="pizza-size"
+            class="u-full-width"
+            placeholder="size"
+          />
+          <button id="add-pizza" class="u-full-width button button-primary">
+            Add Pizza
+          </button>
+          <hr />
+
+          <h3>Change Pizza price</h3>
+          <input
+            type="number"
+            id="change-pizza-id"
+            class="u-full-width"
+            placeholder="Id"
+          />
+          <input
+            type="number"
+            id="change-pizza-price"
+            class="u-full-width"
+            placeholder="price"
+          />
+          <button id="change-pizza" class="u-full-width button button-primary">
+            Change Pizza
+          </button>
+          <hr />
+          <h3>Update pizza</h3>
+          <input
+            type="number"
+            id="Upizza-id"
+            class="u-full-width"
+            placeholder="Id"
+          />
+          <input
+            type="text"
+            id="Upizza-name"
+            class="u-full-width"
+            placeholder="Name"
+          />
+          <input
+            type="text"
+            id="Upizza-url"
+            class="u-full-width"
+            placeholder="Pizza url"
+          />
+          <input
+            type="number"
+            id="Upizza-price"
+            class="u-full-width"
+            placeholder="price"
+          />
+          <input
+            type="text"
+            id="Upizza-desc"
+            class="u-full-width"
+            placeholder="description"
+          />
+          <input
+            type="text"
+            id="Upizza-size"
+            class="u-full-width"
+            placeholder="size"
+          />
+          <button id="Update-pizza" class="u-full-width button button-primary">
+            Update Pizza
+          </button>
+          <hr />
+
+          </div>
 </body>
 </html>
+<script>
+
+    //  add pizaa
+    let pizzaNameInput = document.getElementById("pizza-name")
+    let pizzaUrlInput = document.getElementById("pizza-url")
+    let pizzaPriceInput = document.getElementById("pizza-price")
+    let pizzaDescInput = document.getElementById("pizza-desc")
+    let pizzaSizeInput = document.getElementById("pizza-size")
+    let addPizzaBtn  = document.getElementById("add-pizza");
+
+    // change price
+
+    let changeIdInput = document.getElementById("change-pizza-id")
+    let changePrizeInput = document.getElementById("change-pizza-price");
+    let changeBtn = document.getElementById("change-pizza");
+
+    // upadate pizza 
+     
+    let updateIdInput = document.getElementById("Upizza-id")
+    let updateNameInput = document.getElementById("Upizza-name")
+    let updateUrlInput = document.getElementById("Upizza-url")
+    let updatePriceInput = document.getElementById("Upizza-price")
+    let updatedescInput = document.getElementById("Upizza-desc")
+    let updateSizeInput = document.getElementById("Upizza-size")
+    let updateBtn = document.getElementById("Update-pizza")
+ 
+ async function fetchdata(){
+    try{
+   let res = await fetch(`https://mock-api-template-a705.onrender.com/pizza`)
+   let data = await res.json();
+   console.log(data)
+    }catch(err){
+        console.log(err)
+    }
+ }
+ 
+ fetchdata()
+
+ addPizzaBtn.addEventListener("click",(e)=>{
+    e.preventDefault();
+    let name = pizzaNameInput.value;
+    let image = pizzaUrlInput.value;
+    let price = pizzaPriceInput.value;
+    let description = pizzaDescInput.value;
+    let size = pizzaSizeInput.value;
+
+    fetch(`https://mock-api-template-a705.onrender.com/pizza`,{
+    method:"POST",
+    body : JSON.stringify({
+     name : name,
+     image : image,
+     price : price,
+     description : description,
+     size : size
+    }),
+    headers:{
+      "content-type":"application/json"
+    }
+  })
+   
+    console.log(name,image,price,description,size)
+
+ })
+</script>
