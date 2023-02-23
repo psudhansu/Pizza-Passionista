@@ -22,7 +22,7 @@
         <h1>No of Products</h1> 
     </div>
     <div class="section">
-        <div >
+        <div id="order">
             <h1 id="oders">
                 0
             </h1>
@@ -37,7 +37,7 @@
                 0
             </h1>
         </div>
-        <div >
+        <div id="product">
             <h1 id="product">
                 0
             </h1>
@@ -45,6 +45,27 @@
     </div>
     <footer>© 2023 PizzaPassionista. All rights reserved.</footer>
 </body>
+<script>
+    let tot_order = document.getElementById("product")
+    async function fetchAndRender(){
+  try{
+    let res = await fetch(`https://striped-telling-dryer.glitch.me/pizza`)
+    let data = await res.json();
+    
+    console.log(data.length)
+    // paginationBtn(total_page)
+    total(data.length)
+  }catch(err){
+    console.log(err)
+  }
+  
+}
+fetchAndRender()
+
+function total(num){
+  tot_order.innerHTML=`<h1>${num}</h1>`
+}
+</script>
 
 
 
