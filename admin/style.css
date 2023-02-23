@@ -83,8 +83,70 @@ td{
 .delete{
     color: #fff;
     background-color: red;
+    border-radius: 5px;
 }
 .change{
     background-color: green;
     color: #fff;
+    border-radius: 5px;
+}
+#profile{
+    background-color: #0558b1;
+    border-radius: 5px;
+    padding: 8px;
+}
+#profile:hover{
+    background-color: #3572b3;
+}
+
+
+
+
+
+.popup{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 25%;
+    transform: translate(-50%,-50%) scale(0.1);
+    border: 2px solid black;
+    background: #fff;
+    text-align: center;
+    border-radius: 20px;
+    visibility: hidden;
+}
+.otp-box{
+    padding: 30px;
+}
+.popup button{
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+}
+.popup input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 280px;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #007bff;
+}
+.open-popup{
+    top: 30%;
+    transform: translate(-50%,-50%) scale(1);
+    transition: top 0.4s ease;
+    visibility: visible;
+}
+.close-popup{
+    top: 0;
+    transform: translate(-50%,-50%) scale(0.1);
+    transition: top 0.7s ease;
+    visibility: hidden;
+}
+#alert{
+    text-align: center;
+    color: green;
 }

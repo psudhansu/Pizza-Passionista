@@ -9,12 +9,90 @@
 </head>
 <body>
     <nav>
-        <a href="home.html">Dashboard</a><a href="admin.html">Admin</a><a href="product.html">Product</a><a href="order.html">Orders</a><a href="users.html">Users</a><a id="logout">Logout</a>
+        <a href="home.html">Dashboard</a><a href="admin.html">Admin</a><a href="product.html">Product</a><a href="order.html">Orders</a><a href="users.html">Users</a><a id="profile"></a><a id="logout">Logout</a>
     </nav>
 
     <h1 style="margin: 40px; color: #007bff;">Orders</h1>
 
+    <table>
+        <thead>
+            <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Change Status</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
 
     <footer>© 2023 PizzaPassionista. All rights reserved.</footer>
 </body>
+<script>
+
+    async function fetchapi(){
+        let res = await fetch('https://narrow-internal-record.glitch.me/orders');
+        let data = await res.json();
+        console.log(data);
+        append(data);
+     }
+     fetchapi();
+
+
+     //profile
+     let arr = JSON.parse(localStorage.getItem('login'))||[]
+    let pro = document.getElementById('profile');
+    pro.textContent = "Hi!👋 "+arr[0].name;
+
+
+    let tbody = document.querySelector('tbody');
+    function append(data){
+        let tr = ""
+        for(let i=0;i<data.length;i++){
+        tr += `
+        <tr>
+        <td>${data[i].id}</td>
+        <td>${data[i].name}</td>
+        <td><img src="${data[i].image}"></td>
+        <td>${data[i].price}</td>
+        <td id="status">Order Placed</td>
+        <td>
+            <select id="select" onclick="update(${data[i].id})">
+                <option>Change Status</option>
+                <option value="Order Placed">Order Placed</option>
+                <option value="Order Shipped">Order Shipped</option>
+                <option value="Order Delivered">Order Delivered</option>
+                <option value="Order Cancelled">Order Cancelled</option>
+            </select>
+        </td>
+        </tr>
+        `
+
+        }   
+        tbody.innerHTML = tr; 
+    }
+    setTimeout(()=>{
+        let change = document.getElementById('select')
+        change.addEventListener('change', async ()=>{
+            let status = document.getElementById('status');
+            let res = await fetch('https://narrow-internal-record.glitch.me/orders',{
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                
+            });
+        })
+    },3000)
+
+    // function update(id){
+        
+    // }
+    
+</script>
 </html>
