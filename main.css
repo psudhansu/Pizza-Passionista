@@ -1,0 +1,53 @@
+nav{
+    display: flex;
+    justify-content: end;
+    background-color: #0066a7;
+    height: 50px;
+    
+
+}
+.image{
+    filter: invert(100%);
+    width: 40px;
+    margin-top: 4px;
+  }
+
+
+nav div{
+    
+    margin-right: 10px;
+    color: white;
+    font-size: 15px;
+}
+nav :nth-child(2) div h6{
+    margin-top: -20px;
+}
+nav :nth-child(2){
+    margin-top: -13px;
+}
+#container :nth-child(1) div{
+    display: flex;
+    color: #0066a7;
+}
+#container :nth-child(1){
+    margin-left: 50px;
+    margin-top: 20px;
+}
+#container h3{
+    margin-left: 50px;
+}
+
+#container{
+    display: flex;
+    justify-content: space-around;
+}
+#container :nth-child(2) img{
+    width: 726px;
+    
+}
+#container .bike{
+    width: 700px;
+}
+#locate{
+    border: 2px solid red;
+}
