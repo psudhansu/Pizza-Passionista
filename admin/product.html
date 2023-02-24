@@ -9,7 +9,7 @@
 </head>
 <body>
     <nav>
-        <a href="home.html">Dashboard</a><a href="admin.html">Admin</a><a href="product.html">Product</a><a href="order.html">Orders</a><a href="users.html">Users</a><a id="logout">Logout</a>
+        <a href="home.html">Dashboard</a><a href="admin.html">Admin</a><a href="product.html">Product</a><a href="order.html">Orders</a><a href="users.html">Users</a><a id="profile"></a><a id="logout">Logout</a>
     </nav>
 
     <h1 style="margin: 40px; color: #007bff;">Products</h1>
@@ -137,6 +137,13 @@
     
     <footer>© 2023 PizzaPassionista. All rights reserved.</footer>
 </body>
+<script>
+    //profile
+    let arr = JSON.parse(localStorage.getItem('login'))||[]
+   let pro = document.getElementById('profile');
+   pro.textContent = "Hi!👋 "+arr[0].name;
+</script>
+
 </html>
 <script>
 
@@ -286,3 +293,4 @@ hideBtn.addEventListener("click",()=>{
 })
 
 </script>
+
