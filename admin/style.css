@@ -21,6 +21,10 @@ nav a{
     color: #fff;
     text-decoration: none;
 }
+nav a:hover{
+    text-decoration: underline rgb(75, 3, 3);
+}
+
 .headings{
     display: flex;
     justify-content: space-around;
@@ -100,10 +104,6 @@ td{
     background-color: #3572b3;
 }
 
-
-
-
-
 .popup{
     position: absolute;
     top: 0;
@@ -155,6 +155,7 @@ td{
 #alert{
     text-align: center;
     color: green;
+
 }
 #main-container{
     width:95%;
@@ -183,7 +184,8 @@ td{
 }
 .button-primary{
 
-    
+    border: none;
+    border-radius: 5px;
     background-color: #007bff;
     color: #fff;
     height: 25px;
@@ -191,4 +193,20 @@ td{
 }
 .button-primary:hover{
     background-color: red;
+    color: red;
+
+}
+#head{
+    color:rgb(0, 64, 255);
+    margin-top: 20px;
+    margin-bottom: 7px;
+}
+#body{
+
+    width :95%;
+    margin: auto
+}
+input:hover{
+    background-color: rgb(245, 242, 242);
+ 
 }

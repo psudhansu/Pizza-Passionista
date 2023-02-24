@@ -22,7 +22,10 @@
         <button id="Add-admin" class="hide-product">
           Hide Product
       </button>
-        <h3>Add pizza</h3>
+      
+      
+      <div id="body">
+        <h3 id="head">Add pizza</h3>
           <input
             type="text"
             id="pizza-name"
@@ -63,9 +66,9 @@
             Add Pizza
           </button>
 
-          <hr />
+          <!-- <hr /> -->
 
-          <h3>Change Pizza price</h3>
+          <h3 id="head">Change Pizza price</h3>
           <input
             type="number"
             id="change-pizza-id"
@@ -82,8 +85,8 @@
             Change Price
           </button>
 
-          <hr />
-          <h3>Update pizza</h3>
+          
+          <h3 id="head">Update pizza</h3>
           <input
             type="number"
             id="Upizza-id"
@@ -129,7 +132,19 @@
           <button id="Update-pizza" class="button-primary">
             Update Pizza
           </button>
-          <hr />
+          <br>
+          <h3 id="head">Delete Pizza</h3>
+          <input
+            type="number"
+            id="del_pizza"
+            class="u-full-width"
+            placeholder="Id"
+          />
+          <button id="del" class="button-primary">
+            Detele
+          </button>
+      </div>
+
     </div>
     <div id="main-container">
             <!-- append card here............. -->
@@ -150,6 +165,7 @@
     let parent = document.getElementById("main-container");
     let allBtn = document.querySelector(".show-product");
     let hideBtn = document.querySelector(".hide-product");
+    let dropBtn = document.querySelector(".drop-product");
     //  add pizaa
     let pizzaNameInput = document.getElementById("pizza-name")
     let pizzaUrlInput = document.getElementById("pizza-url")
@@ -176,6 +192,11 @@
     let updateDescInput = document.getElementById("Upizza-desc")
     let updateSizeInput = document.getElementById("Upizza-size")
     let updateBtn = document.getElementById("Update-pizza")
+
+    // delete pizza 
+   
+    let delPi = document.getElementById("del_pizza");
+    let delBtn = document.getElementById("del");
 
     addPizzaBtn.addEventListener("click",(e)=>{
     e.preventDefault();
@@ -209,6 +230,7 @@ changeBtn.addEventListener("click",(e)=>{
   e.preventDefault();
   let id  = changeIdInput.value;
   let price = changePrizeInput.value;
+  alert( ` id no ${id} change its price`)
 
   fetch(`https://striped-telling-dryer.glitch.me/pizza/${id}`,{
     method : "PATCH",
@@ -232,6 +254,7 @@ updateBtn.addEventListener("click",(e)=>{
     let category = updateCategoryInput.value;
     let description = updateDescInput.value;
     let size = updateSizeInput.value;
+    alert( ` Are you want to Update Id n0 - ${id} `)
 
     fetch(`https://striped-telling-dryer.glitch.me/pizza/${id}`,{
           method : "PUT",
@@ -249,6 +272,20 @@ updateBtn.addEventListener("click",(e)=>{
           }
     })
     console.log(id,name,image,price,category,description,size)
+})
+
+delBtn.addEventListener("click",(e)=>{
+   e.preventDefault();
+  let id = delPi.value;
+  alert( `Delete id no - ${id}`)
+  fetch(`https://striped-telling-dryer.glitch.me/pizza/${id}`,{
+    method : "DELETE",
+  
+    headers : {
+        "content-type": "application/json"
+    }
+
+  })
 })
 
 allBtn.addEventListener("click",async()=>{
@@ -278,7 +315,7 @@ function getData(id,name,image,price,category,description,size){
     </div>
     <div class="all">
     <h4>id: ${id}</h4>
-    <h3>Nmae: ${name}</h3>
+    <h3>Name: ${name}</h3>
     <p>Price: ${price}</p>
     <h4>Category: ${category}</h4>
     <p>Description: ${description}</p>
@@ -291,6 +328,8 @@ function getData(id,name,image,price,category,description,size){
 hideBtn.addEventListener("click",()=>{
   parent.innerHTML=""
 })
+
+// dropBtn.addEventListener("click",())
 
 </script>
 
