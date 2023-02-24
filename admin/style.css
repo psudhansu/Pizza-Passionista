@@ -147,10 +147,14 @@ td{
     transition: top 0.7s ease;
     visibility: hidden;
 }
+#change-status{
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+}
 #alert{
     text-align: center;
     color: green;
-=======
 }
 #main-container{
     width:95%;
@@ -187,5 +191,4 @@ td{
 }
 .button-primary:hover{
     background-color: red;
-
 }

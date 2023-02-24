@@ -22,8 +22,8 @@
         <h1>No of Products</h1> 
     </div>
     <div class="section">
-        <div id="order">
-            <h1 id="oders">
+        <div>
+            <h1 id="orders">
                 0
             </h1>
         </div>
@@ -37,7 +37,7 @@
                 0
             </h1>
         </div>
-        <div id="product">
+        <div>
             <h1 id="product">
                 0
             </h1>
@@ -71,7 +71,7 @@ function total(num){
 
     // Authetication
     function authentication(){
-    let arr = JSON.parse(localStorage.getItem('login'))
+    let arr = JSON.parse(localStorage.getItem('login'))||[]
     console.log(arr)
         if(arr.length == 0){
             alert("Please Login First")
@@ -95,6 +95,53 @@ function total(num){
     let arr = JSON.parse(localStorage.getItem('login'))||[]
     let pro = document.getElementById('profile');
     pro.textContent = "Hi!👋 "+arr[0].name;
+
+
+
+
+    //products
+    fetchproducts()
+    async function fetchproducts(){
+        let res = await fetch('https://striped-telling-dryer.glitch.me/pizza');
+        let data = await res.json();
+        let pro = document.getElementById('product');
+        console.log(data.length)
+        pro.textContent = data.length;
+    }
+
+    //users
+    fetchusers()
+    async function fetchusers(){
+        let api = await fetch('https://narrow-internal-record.glitch.me/users');
+        let data = await api.json();
+        let pro = document.getElementById('user');
+        pro.textContent = data.length
+    }
+
+
+
+    //orders
+    fetchorders()
+    async function fetchorders(){
+        let api = await fetch('https://narrow-internal-record.glitch.me/orders');
+        let data = await api.json();
+        let pro = document.getElementById('orders');
+        pro.textContent = data.length
+    }
+
+
+    //revenue
+    fetchrev()
+    async function fetchrev(){
+        let api = await fetch('https://narrow-internal-record.glitch.me/orders');
+        let data = await api.json();
+        let pro = document.getElementById('revenue');
+        let sum  = 0;
+        for(let i=0;i<data.length;i++){
+            sum += (+data[i].price)
+        }
+        pro.textContent = sum
+    }
 </script>
 
 </html>
