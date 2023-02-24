@@ -15,17 +15,36 @@
     <h1 style="margin: 40px; color: #007bff;">Users</h1>
 
 
+    <table>
+        <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
     <footer>© 2023 PizzaPassionista. All rights reserved.</footer>
 </body>
 <script>
 
-    // authe
+
+    // Authetication
     function authentication(){
-    let arr = JSON.parse(localStorage.getItem('login')) || []
+    let arr = JSON.parse(localStorage.getItem('login'))||[]
+
     console.log(arr)
         if(arr.length == 0){
             alert("Please Login First")
             window.location.replace("login.html");
+            console.log('helo')
+
         }
     }
     authentication();
@@ -37,10 +56,49 @@
         window.location.replace("login.html");
     })
 
-    
+
     //profile
     let arr = JSON.parse(localStorage.getItem('login'))||[]
    let pro = document.getElementById('profile');
    pro.textContent = "Hi!👋 "+arr[0].name;
+
+
+
+   let tbody = document.querySelector('tbody');
+    async function fetchapi(){
+        let api = await fetch('https://narrow-internal-record.glitch.me/users');
+        let data = await api.json();
+        console.log(data);
+        append(data);
+    }
+    fetchapi()
+    function append(data){
+        let tr = ""
+        for(let i=0;i<data.length;i++){
+        tr += `
+        <tr>
+        <td>${data[i].id}</td>
+        <td>${data[i].name}</td>
+        <td>${data[i].email}</td>
+        <td>${data[i].mobile}</td>
+        <td class="delete" onclick="delet(${data[i].id})">DELETE</td>
+        </tr>
+        `
+        }   
+        tbody.innerHTML = tr; 
+    }
+
+
+    async function delet(id){
+        let res = await fetch(`https://narrow-internal-record.glitch.me/users/${id}`,{
+            method: "DELETE",
+            headers:{
+                "Content-Type": "application/json"
+            },
+        });
+        fetchapi();
+        let data = await res.json();
+        
+    }
 </script>
 </html>

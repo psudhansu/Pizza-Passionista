@@ -104,10 +104,6 @@ td{
     background-color: #3572b3;
 }
 
-
-
-
-
 .popup{
     position: absolute;
     top: 0;
@@ -151,6 +147,11 @@ td{
     transition: top 0.7s ease;
     visibility: hidden;
 }
+#change-status{
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+}
 #alert{
     text-align: center;
     color: green;
@@ -191,6 +192,7 @@ td{
     padding: 5px;
 }
 .button-primary:hover{
+    background-color: red;
     color: red;
 
 }
@@ -206,6 +208,5 @@ td{
 }
 input:hover{
     background-color: rgb(245, 242, 242);
-    
-    
+ 
 }

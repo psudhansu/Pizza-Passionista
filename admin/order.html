@@ -17,7 +17,7 @@
     <table>
         <thead>
             <tr>
-            <th>ID</th>
+            <th>Order ID</th>
             <th>Name</th>
             <th>Image</th>
             <th>Price</th>
@@ -52,6 +52,28 @@
         window.location.replace("login.html");
     })
 
+    // Authetication
+    function authentication(){
+    let arr = JSON.parse(localStorage.getItem('login'))||[]
+    console.log(arr)
+        if(arr.length == 0){
+            alert("Please Login First")
+            window.location.replace("login.html");
+            console.log('helo')
+        }
+    }
+    authentication();
+    let logout = document.getElementById('logout');
+    logout.addEventListener('click',()=>{
+        let arr1 = [];
+        alert("You Want to LogOut")
+        localStorage.setItem('login',JSON.stringify(arr1));
+        window.location.replace("login.html");
+    })
+
+    
+
+
     async function fetchapi(){
         let res = await fetch('https://narrow-internal-record.glitch.me/orders');
         let data = await res.json();
@@ -69,47 +91,95 @@
 
     let tbody = document.querySelector('tbody');
     function append(data){
-        let tr = ""
-        for(let i=0;i<data.length;i++){
-        tr += `
-        <tr>
-        <td>${data[i].id}</td>
-        <td>${data[i].name}</td>
-        <td><img src="${data[i].image}"></td>
-        <td>${data[i].price}</td>
-        <td id="status">Order Placed</td>
-        <td>
-            <select id="select" onclick="update(${data[i].id})">
-                <option>Change Status</option>
-                <option value="Order Placed">Order Placed</option>
-                <option value="Order Shipped">Order Shipped</option>
-                <option value="Order Delivered">Order Delivered</option>
-                <option value="Order Cancelled">Order Cancelled</option>
-            </select>
-        </td>
-        </tr>
-        `
 
-        }   
-        tbody.innerHTML = tr; 
+
+        // let tr = ""
+        // for(let i=0;i<data.length;i++){
+        // tr += `
+        // <tr>
+        // <td>${data[i].id}</td>
+        // <td>${data[i].name}</td>
+        // <td><img src="${data[i].image}"></td>
+        // <td>${data[i].price}</td>
+        // <td id="status">Order Placed</td>
+        // <td>
+        //     <select id="select" onclick="update(${data[i].id})">
+        //         <option>Change Status</option>
+        //         <option value="Order Placed">Order Placed</option>
+        //         <option value="Order Shipped">Order Shipped</option>
+        //         <option value="Order Delivered">Order Delivered</option>
+        //         <option value="Order Cancelled">Order Cancelled</option>
+        //     </select>
+        // </td>
+        // </tr>
+        // `
+
+        // }   
+        // tbody.innerHTML = tr; 
+
+
+        tbody.innerHTML = ""
+        data.forEach((element) => {
+            let tr = document.createElement('tr');
+            let td1 = document.createElement('td');
+            td1.textContent = element.id;
+            
+            let td2 = document.createElement('td');
+            td2.textContent = element.name;
+            
+            let td3 = document.createElement('td');
+            let img = document.createElement('img');
+            img.src = element.image;
+            td3.append(img);
+
+            let td4 = document.createElement('td');
+            td4.textContent = "₹ "+element.price;
+            let td5 = document.createElement('td');
+            td5.textContent = element.status;
+            let td6 = document.createElement('td');
+
+            let select = document.createElement('select');
+            let option = document.createElement('option');
+            option.textContent = "Change Status"
+            let option1 = document.createElement('option');
+            option1.textContent = "Order Placed";
+            option1.value = "Order Placed";
+
+            let option2 = document.createElement('option');
+            option2.textContent = "Order Shipped";
+            option2.value = "Order Shipped";
+
+            let option3 = document.createElement('option');
+            option3.textContent = "Order Delivered";
+            option3.value = "Order Delivered";
+
+            let option4 = document.createElement('option');
+            option4.textContent = "Order Cancelled";
+            option4.value = "Order Cancelled";
+
+            select.setAttribute('id',"change-status");
+
+            select.addEventListener('change',async ()=>{
+                let res1 = await fetch(`https://narrow-internal-record.glitch.me/orders/${element.id}`,{
+                    method: "PATCH",
+                    headers:{
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({status : select.value})
+                })
+
+                fetchapi();
+            })
+
+
+            select.append(option,option1,option2,option3,option4);
+
+            td6.append(select);
+            tr.append(td1,td2,td3,td4,td5,td6);
+            tbody.append(tr);
+        });
     }
-    setTimeout(()=>{
-        let change = document.getElementById('select')
-        change.addEventListener('change', async ()=>{
-            let status = document.getElementById('status');
-            let res = await fetch('https://narrow-internal-record.glitch.me/orders',{
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                
-            });
-        })
-    },3000)
-
-    // function update(id){
-        
-    // }
+    
     
 </script>
 </html>
