@@ -1,3 +1,8 @@
+*{
+    font-family: 'Inter', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Poppins', sans-serif;
+}
 #product-container{
     display: flex;
     
@@ -34,4 +39,31 @@ width: 100%;
     font-size: 13px;
     margin-left: 10px;
 
+}
+#sidebar{
+    position: absolute;
+    width: 600px;
+    height: 100%;
+    background-color: #fff;
+    transition: 0.3s ease;
+    left: -600px;
+    margin: auto;
+}
+#sidebar.active{
+    left: 0;
+    transition: 0.5s ease;
+}
+.sideimage{
+    width: 100%;
+}
+
+.sideprice{
+    color: #fff;
+    margin-left: 30px;
+    margin-bottom: 50px;
+}
+
+.headings{
+    border: 2px solid black;
+    margin-top: -80px;
 }
