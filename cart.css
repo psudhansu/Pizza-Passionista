@@ -32,7 +32,7 @@ body {
     text-decoration: none;
     font-size: 16px;
     color: #818181;
-    display: block;
+
     transition: 0.3s;
     padding: 20px;
 }
@@ -121,7 +121,7 @@ body {
     text-decoration: none;
     font-size: 25px;
     color: #818181;
-    display: block;
+
     transition: 0.3s;
 }
 
@@ -207,7 +207,7 @@ body {
     margin-top: 20px;
 }
 
-
+/* nav */
 #login-nav-div >div{
     display: flex;
 }
@@ -219,4 +219,25 @@ body {
     justify-content: center;
     align-items: center;
     height: fit-content
+}
+/* middle section */
+
+#middle-sec {
+    display: flex;
+}
+
+#middle-sec>div {
+    display: flex;
+}
+
+#middle-sec>div:nth-child(1) {
+    display: flex;
+    width: 70%;
+    border: solid blue 5px
+}
+
+#middle-sec>div:nth-child(2) {
+    display: flex;
+    width: 30%;
+    border: solid green 5px
 }
