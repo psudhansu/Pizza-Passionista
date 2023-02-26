@@ -82,7 +82,7 @@
     let username = document.getElementById('email');
     let password = document.getElementById('pass');
     let login = document.getElementById('submit');
-
+   
     login.addEventListener('click',()=>{
         
 
@@ -91,7 +91,7 @@
     })
 
     async function fetcha(){
-        let a = await fetch('https://admin-api-f0qz.onrender.com/users');
+        let a = await fetch('https://flashy-twisty-sundae.glitch.me/users');
         let data = await a.json();
         console.log(data);
         if(username.value == ""){
@@ -106,6 +106,9 @@
             if(username.value == data[i].email && password.value == data[i].password)
             {
                 flag = true;
+                alert
+                let arr = [data[i]]
+                localStorage.setItem('login',JSON.stringify(arr));
                 window.location.replace("home.html");
                 break;
             }    

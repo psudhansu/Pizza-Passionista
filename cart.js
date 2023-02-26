@@ -6,17 +6,12 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
 
-
-
 function openNavright() {
   document.getElementById("mySidenavRight").style.width = "350px";
-  document.getElementById("mySidenavRight").style.display = "block";
 }
 
 function closeNavright() {
   document.getElementById("mySidenavRight").style.width = "0";
-
-  console.log("working in close");
 }
 
 ////  signup
@@ -102,4 +97,43 @@ login.addEventListener("click", () => {
 `;
 });
 
+let orderData = JSON.parse(localStorage.getItem("cart")) || [];
 
+let showCart = document.getElementById("show-cart-items");
+
+showCart.innerHTML = fetchAndRenderCart();
+
+function fetchAndRenderCart() {
+  data.forEach((element) => {
+    return `<div>
+                                <div>
+                                    <img src="https://images.dominos.co.in/cart/new_peppy_paneer.jpg" alt="item-pic">
+                                </div>
+                                <div>
+                                    <span class="item-title">Peppy Paneer</span>
+                                    <span class="item-description">Flavorful trio of juicy paneer, crisp capsicum with spicy red
+                                        paprika</span>
+            
+                                    <div class="item--option">
+                                        <span>Medium</span><span>|</span><span>New Hand
+                                            Tossed</span>
+                                    </div>
+                                    <div class="increase-price">
+                                        <div class="price">
+                                            <div class="price-final" data-label="cart-item-price"><span class="rupee"> 958.00</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="item-quantity" data-label="quantity">
+                                                <div class="quantity" data-label="decrease"></div><span
+                                                    class="number-of-item">2</span>
+                                                <div>
+                                                    <div class="increase-item" data-label="increase"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                </div>`;
+  });
+}
