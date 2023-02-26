@@ -1,0 +1,183 @@
+*{
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+#product-container{
+    display: flex;
+    
+}
+#container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    row-gap: 50px;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+.card{
+ 
+ width: 90%;
+ height: 270px;
+ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+ border-radius: 3px;
+ 
+}
+#image{
+width: 100%;
+border-radius: 3px;
+cursor: pointer;
+
+}
+
+#cart-container{
+    
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px; */
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    height: 500px;
+    
+    margin-top: 100px;
+    margin-left: 20px;
+    overflow: scroll; 
+    
+    
+     position: sticky;
+    top: 50px;
+    width: 90%;
+    margin-bottom: 0px;
+}
+#price-container{
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    height: 100px;
+    
+    margin-top: -20px;
+    margin-left: 20px;
+    text-align: center;
+     font-size: 14px;
+    
+    
+     position: sticky;
+    top: 550px;
+    width: 90%;
+}
+.totalP{
+    padding: 20px;
+    padding-bottom: 5px;
+    font-size: 15px;
+    margin-top: 30px;
+    font-weight: bold;
+    color: rgb(43, 42, 42);
+}
+.button{
+    background-color: #82bb37;
+    color: white;
+    font-weight: bolder;
+    
+    padding: 12px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border: none;
+
+}
+
+
+.empty{
+    
+    padding-bottom: 0px;
+    text-align: center;
+    color: rgb(55, 52, 52);
+    font-size: 20px;
+    width: 320px;
+    margin-right: 10px;
+    
+
+    
+
+}
+.cartImg{
+    width: 100%;
+    
+}
+.addCart{
+padding: 20px;
+padding-top: 0px;
+text-align: center;
+color: rgb(161, 159, 159);
+font-size: 13px;
+}
+
+
+
+
+
+
+
+#name{
+    font-size: 13px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    color: rgb(46, 45, 45);
+}
+#desc{
+    font-size: 11px;
+    margin-left: 10px;
+    color: rgb(101, 97, 97);
+    font-family: 'Fira Sans Condensed', sans-serif;
+
+}
+.price{
+    margin-top: -25px;
+    margin-left: 5px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px rgb(227, 18, 18);
+    
+    
+    
+}
+#selectList{
+    font-size: 11px;
+    margin-left: 10px;
+    border: none;
+    border-bottom: 1px solid rgb(158, 156, 156);
+    border-bottom-width: 1px;
+    margin-right: 2px;
+    cursor: pointer;
+    
+
+}
+#List{
+    font-size: 11px;
+    border: none;
+    border-bottom: 1px solid rgb(158, 156, 156);
+    border-bottom-width: 1px;
+    cursor: pointer;
+    
+    
+}
+#btn{
+    
+    font-size: 11px;
+   margin-left: 50%;
+   margin-top: 20px;
+   background-color: white;
+   color: #21ab63;
+   border: 1px solid #21ab63;
+   padding: 8px;
+   border-radius: 5px;
+   cursor: pointer;
+    
+}
+#btn:hover{
+    
+    font-size: 11px;
+   margin-left: 50%;
+   margin-top: 20px;
+   background-color: white;
+   color: #21ab63;
+   border: 1px solid #21ab63;
+   
+   border-radius: 5px;
+   cursor: pointer;
+   transition-duration: 0.5s;
+   font-family: 'Fira Sans Condensed', sans-serif;
+}
