@@ -312,6 +312,18 @@ function displaydata3() {
   totalP.setAttribute("class", "totalP")
   let button = document.createElement("button")
   button.textContent = "CHECKOUT"
+  button.addEventListener('click',()=>{
+
+    // authentication
+    let arr7 = JSON.parse(localStorage.getItem('userlogin'))||[];
+    if(arr7.length == 0){
+      alert('Please Login First to place order');
+    }
+    else{
+      window.location.replace('cart.html')
+    }
+    
+  })
   button.setAttribute("class", "button")
 
   total.append(totalP, button)
@@ -326,12 +338,7 @@ function displaydata3() {
 
 
 }
-=======
-const url = "https://striped-telling-dryer.glitch.me/pizza"
 
-let container = document.querySelector("#container")
-
-let Data = []
 
 window.addEventListener("load",()=>{
     fetchData(url)

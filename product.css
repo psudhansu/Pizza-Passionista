@@ -240,3 +240,11 @@ button {
     align-items: center;
     height: fit-content
 }
+
+#login-nav-div{
+    transition: 0.5s ease;
+}
+.right-slide-form>img{
+    width: 350px;
+    height: 200px;
+}

@@ -16,6 +16,10 @@ function closeNavright() {
 
 ////  signup
 
+
+
+
+
 let signupElement = document.getElementById("signup");
 
 signupElement.addEventListener("click", () => {
@@ -96,6 +100,9 @@ login.addEventListener("click", () => {
     
 `;
 });
+
+
+
 
 let orderData = JSON.parse(localStorage.getItem("cart")) || [];
 
