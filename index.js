@@ -1,5 +1,4 @@
 
-
 const url = "https://striped-telling-dryer.glitch.me/pizza"
 
 let container = document.querySelector("#container")
@@ -134,7 +133,23 @@ function displayData(data) {
       
 
       let cartData = JSON.parse(localStorage.getItem("cart")) || []
-      let isPresent = false
+
+//*** */
+      
+
+    
+    
+    let total=Number(0)
+    cartData.forEach(function(ele){
+        p=Number(ele.price)
+        total=total+p
+    })
+    // document.querySelector("#hh22").innerText="Total price is: "+total
+    console.log(total)
+//**** */
+      
+
+let isPresent = false
       for (let i = 0; i < cartData.length; i++) {
         if (cartData[i].id == el.id) {
           isPresent = true;
@@ -150,23 +165,31 @@ function displayData(data) {
         // alert("Product added to The cart")
         let orderData = JSON.parse(localStorage.getItem("cart")) || []
         displaydata(orderData)
-        
-        let totalArr = JSON.parse(localStorage.getItem("total")) || []
-        totalArr.push(Number(el.price))
-        var bag = 0
-        for (let i = 0; i < totalArr.length; i++) {
-          bag = bag + totalArr[i]
-        }
 
-        totalPrice = bag
+        let total=Number(0)
+    cartData.forEach(function(ele){
+        p=Number(ele.price)
+        total=total+p
+    })
+    // document.querySelector("#hh22").innerText="Total price is: "+total
+    console.log(total)
         
-        
-        
-        let done = localStorage.setItem("total", JSON.stringify(totalArr))
+        // let totalArr = JSON.parse(localStorage.getItem("total")) || []
+        // totalArr.push(Number(el.price))
+        // var bag = 0
+        // for (let i = 0; i < totalArr.length; i++) {
+        //   bag = bag + totalArr[i]
+        // }
 
-        length = orderData.length
+        // totalPrice = bag
+        
+        
+        
+        // let done = localStorage.setItem("total", JSON.stringify(totalArr))
 
-        console.log(length)
+        // length = orderData.length
+
+        // console.log(length)
        
     
        
@@ -254,6 +277,7 @@ function displaydata(data) {
       minus.textContent = "-"
     minus.addEventListener("click",function(){
       count.textContent -= Number(1)
+      var orderData = JSON.parse(localStorage.getItem("cart")) || []
 
       if(count.textContent<1){
         orderData.splice(i,1)
@@ -326,87 +350,3 @@ function displaydata3() {
 
 
 }
-=======
-const url = "https://striped-telling-dryer.glitch.me/pizza"
-
-let container = document.querySelector("#container")
-
-let Data = []
-
-window.addEventListener("load",()=>{
-    fetchData(url)
-  })
-
-  function fetchData(params){
-    fetch(params)
-    .then((res)=>res.json())
-    .then((aka)=>{
-
-    Data = aka.map((e,i)=>{
-      return {
-        brand:e.brand,
-        name:e.name,
-        title:e.title,
-        image:e.image,
-        description:e.description,
-        category:e.category,
-        price:e.price,
-        id:e.id
-
-      }
-    })
-    displayData(Data)
-    console.log(aka)
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
-  }
-
-  function displayData(data){
-        
-    container.innerHTML = null;
-      data.forEach((el,i)=>{
-        let card = document.createElement("div")
-        card.setAttribute("class","card")
-        
-
-        let image = document.createElement("img")
-        image.setAttribute("src",el.image)
-        image.setAttribute("id","image")
-        image.addEventListener('click',()=>{
-          fundisp(el.id);
-          document.getElementById('sidebar').classList.toggle('active');
-        })
-        let price = document.createElement("p")
-        price.textContent = el.price
-
-        let name = document.createElement("h2")
-          name.textContent = el.name
-
-          let description = document.createElement("p")
-          description.textContent = el.description
-          description.setAttribute("id","desc")
-
-        card.append(image,price,name,description)
-        container.append(card)
-
-      })
-    }
-
-    let fundisp = async (id)=>{
-      let a = await fetch(`${url}/${id}`);
-      let pro = await a.json();
-      append(pro);
-    }
-
-    let append=(pro)=>{
-      let side = document.getElementById('sidebar');
-      let cardd=`<img src="${pro.image}" class="sideimage">
-        <div class = "headings">
-        <p class="sideprice">₹ ${pro.price}</p>
-        <h2>${pro.name}</h2>
-        <p>${pro.description}</p>
-        </div>`;
-      side.innerHTML = cardd;
-    }

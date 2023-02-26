@@ -1,12 +1,5 @@
 *{
-
     font-family: 'Fira Sans Condensed', sans-serif;
-}
-
-
-    font-family: 'Inter', sans-serif;
-font-family: 'Open Sans', sans-serif;
-font-family: 'Poppins', sans-serif;
 }
 
 #product-container{
@@ -22,7 +15,6 @@ font-family: 'Poppins', sans-serif;
 }
 .card{
  
-
  width: 90%;
  height: 270px;
  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -188,56 +180,5 @@ font-size: 13px;
    cursor: pointer;
    transition-duration: 0.5s;
    font-family: 'Fira Sans Condensed', sans-serif;
-=======
- width: 70%;
- box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-}
-#image{
-width: 100%;
 }
 
-#cart-container{
-    border: 2px solid mediumaquamarine;
-    padding: 170px;
-    height: 150px;
-    margin-right: 50px;
-    margin-top: 50px;
-}
-
-#container h2{
-    font-size: 17px;
-    margin-left: 10px;
-}
-#desc{
-    font-size: 13px;
-    margin-left: 10px;
-
-}
-#sidebar{
-    position: absolute;
-    width: 600px;
-    height: 100%;
-    background-color: #fff;
-    transition: 0.3s ease;
-    left: -600px;
-    margin: auto;
-}
-#sidebar.active{
-    left: 0;
-    transition: 0.5s ease;
-}
-.sideimage{
-    width: 100%;
-}
-
-.sideprice{
-    color: #fff;
-    margin-left: 30px;
-    margin-bottom: 50px;
-}
-
-.headings{
-    border: 2px solid black;
-    margin-top: -80px;
-
-}
