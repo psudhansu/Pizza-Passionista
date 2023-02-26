@@ -86,6 +86,7 @@ function fetchData(params) {
           category: e.category,
           price: e.price,
           id: e.id,
+          quantity: e.quantity,
         };
       });
 
