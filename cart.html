@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +12,8 @@
 </head>
 
 <body>
+
+
     <div id="container">
         <div id="nav">
 
@@ -185,11 +189,11 @@
                     </div>
                     <span class="span-text">Price Details</span>
                     <div class="bill">
-                        <div class="sub-total"><span>Sub Total</span><span>554.00</span></div>
-                        <div class="discount"><span>Discount</span><span>₹ 100</span></div>
-                        <div class="tax"><span>Taxes And Charges</span><span id="total-tax">554.00</span></div>
+                        <div class="sub-total"><span>Sub Total</span><span id="subTotalNow"></span></div>
+                        <div class="discount"><span>Discount</span><span id="discount"></span></div>
+                        <div class="tax"><span>Taxes And Charges</span><span id="total-tax"></span></div>
 
-        <div class="grand-total"><span>Grand Total</span><span id="grand">554.00</span></div>
+        <div class="grand-total"><span>Grand Total</span><span id="grand"></span></div>
 
         <div><button id="place-order">Place Order</button></div>
         </div>
@@ -198,8 +202,15 @@
 
 <!-- Footer Section -->
 </div>
+<div id="header">
+</div>
 </body>
 
 </html>
 
 <script src="cart.js"></script>
+<script>
+    $(function () {
+        $('#header').load('footer.html');
+    })
+</script>
