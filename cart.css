@@ -32,7 +32,7 @@ body {
     text-decoration: none;
     font-size: 16px;
     color: #818181;
-
+    display: block;
     transition: 0.3s;
     padding: 20px;
 }
@@ -233,11 +233,272 @@ body {
 #middle-sec>div:nth-child(1) {
     display: flex;
     width: 70%;
-    border: solid blue 5px
+    margin-top: 30px;
+    
+    }
+    
+    #mySidenavRight {
+        display: none;
+    }
+    
+    
+    /* 
+                                                                                                        right side */
+    
+    #right-cart {
+    
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+        margin-right: 35px;
+    }
+    
+    #right-cart>div {
+    
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding: 20px 15px 20px 15px;
+        border-radius: 5px;
+    }
+    
+    
+    /* bill div */
+    
+    .bill>div {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        margin-right: 14px;
+        margin-left: 14px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+    
+    
+    /* place order button */
+    
+    #place-order {
+        padding: 0.7rem 1.5rem;
+        width: 99%;
+        height: 2.5rem;
+        background: rgb(130, 187, 55);
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+        font-size: 16px;
+        padding: auto;
+    }
+    
+    .span-text {
+        font-weight: 600;
+        margin: 1.5rem 0px 0px 0.5rem
+    }
+    
+    /* Address div */
+    
+    #address {
+        display: flex;
+        justify-content: space-between;
+    
+    }
+    
+    #login-for-address {
+        display: flex
+    }
+    
+    
+    /* change button */
+    #change {
+    
+        background-color: rgb(101, 171, 11);
+        color: rgb(255, 255, 255);
+        border: 1px solid rgb(101, 171, 11);
+        width: 100%;
+        padding: 0.5rem;
+        font-weight: 600;
+        border-radius: 3px;
+        outline: none;
+        text-transform: uppercase;
+        padding: 0.5em 1em;
+        border: none;
+        cursor: pointer;
+    }
+    
+    
+    /* my address */
+    
+    #my-address {
+        width: fit-content;
+        height: fit-content;
+        padding: 0.3rem;
+        font-weight: 600;
+        cursor: pointer;
+        background-color: rgb(255, 255, 255) !important;
+        color: rgb(101, 171, 11) !important;
+        border: 1px solid rgb(101, 171, 11) !important;
+        border-radius: 5px;
+    }
+    
+    
+    /* cart item css */
+    
+    #show-cart-items {
+        display: flex;
+        flex-direction: column;
+    
+    }
+    
+    #card>div {
+        display: flex;
+        width: 91%;
+        margin-left: 40px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        justify-content: flex-start;
+        padding: 15px;
+    
+        border-radius: 5px;
+    
+    }
+    
+    #card>div>div:nth-child(2) {
+        width: 60%;
+    
+    }
+    
+    
+    .item-option {
+        font-size: 0.8rem;
+        padding-right: 1rem;
+        font-weight: 600;
+        color: rgba(53, 53, 53, 0.87);
+    }
+    
+    /* quantity change */
+    
+    #quantity-change {
+        display: flex;
+    }
+    
+    /* cart photo */
+    
+    #cart-photo {
+        height: 130px;
+        width: 55%;
+        margin: 20px;
+    
+    }
+    
+    .item-title {
+        font-size: 1rem;
+        font-weight: 600;
+        display: block;
+    }
+    
+    .item-description {
+        font-size: 0.8rem;
+        color: rgb(100, 129, 143);
+        width: 50%;
+        display: block;
+    }
+    
+    
+    #customization-head {
+        color: rgb(87, 153, 225);
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    
+    * {
+        font-family: "Lato",
+            sans-serif;
+    }
+    
+    #customization-title {
+        font-weight: 600;
+        color: rgb(100, 129, 143);
+        font-size: 0.8rem;
+    }
+    
+    /* price */
+    
+    .rupee {
+        display: flex;
+        flex-direction: column;
+        padding-top: 1rem;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: rgb(44, 101, 128);
 }
 
-#middle-sec>div:nth-child(2) {
+/* Quantity */
+
+#quantity-change {
     display: flex;
-    width: 30%;
-    border: solid green 5px
+    justify-content: space-around;
+        cursor: pointer;
+        border: 1px solid rgb(186, 186, 186);
+        border-radius: 3px;
+        margin-right: 55px;
+        width: 90%;
+        height: 25px;
+        align-items: center;
+    
+    }
+    
+    
+    #empty {
+        width: 40%;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    
+    
+    /* Empty Cart */
+    
+    .empty-cart {
+        display: grid;
+        place-items: center;
+        margin-top: 30px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding: 100px 0px 100px 0px;
+    }
+    
+    .empty-cart>div {
+        margin-top: 20px;
+    }
+    
+    #empty-text-1 {
+        font-size: 1.6rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: rgb(113, 128, 145);
+        width: 100%;
+    
+    }
+    
+    #empty-text-2 {
+        font-size: 1rem;
+        color: rgb(105, 129, 158);
+        padding-top: 0.2rem;
+        width: 100%;
+    }
+    
+    #explore {
+        background-color: rgb(101, 171, 11);
+        color: rgb(255, 255, 255);
+        border: 1px solid rgb(101, 171, 11);
+        padding: 0.7em 1.5rem;
+        border-radius: 3px;
+        outline: none;
+        text-transform: uppercase;
+        padding: 0.5em 1em;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        height: 35px;
 }

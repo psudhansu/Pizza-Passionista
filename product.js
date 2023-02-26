@@ -1,4 +1,5 @@
 function openNav() {
+  console.log("in product open ");
   document.getElementById("mySidenav").style.width = "350px";
 }
 
@@ -6,15 +7,15 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
 
-
-
 function openNavright() {
+  console.log("in product open nav right");
   document.getElementById("mySidenavRight").style.width = "350px";
   document.getElementById("mySidenavRight").style.display = "block";
 }
 
 function closeNavright() {
   document.getElementById("mySidenavRight").style.width = "0";
+  document.getElementById("mySidenavRight").style.display = "none";
 
   console.log("working in close");
 }

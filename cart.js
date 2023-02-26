@@ -8,10 +8,12 @@ function closeNav() {
 
 function openNavright() {
   document.getElementById("mySidenavRight").style.width = "350px";
+  document.getElementById("mySidenavRight").style.display = "block";
 }
 
 function closeNavright() {
   document.getElementById("mySidenavRight").style.width = "0";
+  document.getElementById("mySidenavRight").style.display = "none";
 }
 
 ////  signup
@@ -101,39 +103,175 @@ let orderData = JSON.parse(localStorage.getItem("cart")) || [];
 
 let showCart = document.getElementById("show-cart-items");
 
-showCart.innerHTML = fetchAndRenderCart();
+fetchAndRenderCart(orderData);
 
-function fetchAndRenderCart() {
+function fetchAndRenderCart(data) {
+  showCart.innerHTML = "";
+
+  if (data.length === 0) {
+    showCart.innerHTML = `
+    <div class="empty-cart">
+   <img src="https://pizzaonline.dominos.co.in/static/assets/cart_empty.png" id="empty-img">
+   <div class="empty-text"><span id="empty-text-1">Your Cart is Empty</span><br><br><span class="empty-text-2">Please add some items from the menu.</span></div>
+   <div>
+      <div id="explore-div"><button id="explore"><span>Explore Menu</span></button></div>
+   </div>
+</div>
+`;
+    return;
+  }
+
+  let cardDetail = [];
   data.forEach((element) => {
-    return `<div>
-                                <div>
-                                    <img src="https://images.dominos.co.in/cart/new_peppy_paneer.jpg" alt="item-pic">
-                                </div>
-                                <div>
-                                    <span class="item-title">Peppy Paneer</span>
-                                    <span class="item-description">Flavorful trio of juicy paneer, crisp capsicum with spicy red
-                                        paprika</span>
-            
-                                    <div class="item--option">
-                                        <span>Medium</span><span>|</span><span>New Hand
-                                            Tossed</span>
-                                    </div>
-                                    <div class="increase-price">
-                                        <div class="price">
-                                            <div class="price-final" data-label="cart-item-price"><span class="rupee"> 958.00</span>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="item-quantity" data-label="quantity">
-                                                <div class="quantity" data-label="decrease"></div><span
-                                                    class="number-of-item">2</span>
-                                                <div>
-                                                    <div class="increase-item" data-label="increase"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
-                                </div>`;
+    cardDetail.push(getCard(element));
   });
+
+  //   cardDetail = [`<div id=1>First div</div>`, `<div id=1>Second div</div>`];
+  showCart.innerHTML = `<div id="entire-div">${cardDetail.join("")}</div>`;
 }
+
+function getCard(item) {
+  //item =  {
+  // 	"id": 1,
+  // 	"name": "Margherita",
+  // 	"image": "https://images.dominos.co.in/new_margherita_2502.jpg",
+  // 	"price": "199",
+  // 	"category": "Veg",
+  // 	"description": "Delightful Kashundi flavours on a veg pizza which is Loaded with spicy jalapenos ",
+  // 	"size": "Regular"
+  // }
+
+  return `<div id="card">
+                <div>
+                    <div>
+                        <img src="${item.image}" alt="photo" id="cart-photo">
+                    </div>
+                    <div>
+                        <span class="item-title">${item.name}</span>
+                    <br>
+                    <span class="item-description">${item.description}</span>
+                    <div class="item-option"><span>${
+                      item.size
+                    }</span><span>|</span><span>New Hand Tossed</span></div>
+                    <hr style="width:95%;text-align:left;margin-left:0;text-decoration: dashed;">
+                    <p id="customization-head">Your Customization</p>
+                    <p id="customization-title">Added Toppings : <span>Extra Cheese</span></p>
+                    </div>
+                    <div>
+                        <div class="increase-price">
+                            <div class="price">
+                                <div class="price-final"><span class="rupee"> ₹ ${
+                                  item.quantity * item.price
+                                }</span></div>
+                                </div>
+                                <div id="quantity-change">
+                                    <div class="decrease"> <img src="https://pizzaonline.dominos.co.in/static/assets/icons/minus.svg" alt=""></div>
+                                    |<div class="count">${item.quantity}</div> |
+                                    <div class="increase"><img src="https://pizzaonline.dominos.co.in/static/assets/icons/plus.svg" alt=""></div>
+                                </div>
+                                </div>
+                        </div>
+                        </div>
+                        </div>
+                        `;
+}
+
+///Calculating final total
+
+let taxAndCharges = document.getElementById("total-tax");
+let tax = `₹ ${(18 / 100) * 100}`;
+taxAndCharges.innerText = tax;
+
+let grandTotal = document.getElementById("grand");
+let grand = 1000 - 100;
+grandTotal.innerText = `₹ ${grand}`;
+
+//// Increasing and decreasing quantity
+
+let countElement = document.getElementsByClassName("count");
+
+let increase = document.getElementsByClassName("increase");
+
+let decrease = document.getElementsByClassName("decrease");
+
+let increaseIndex = 0;
+
+for (let item of increase) {
+  console.log(item, "here inside increase",increaseIndex)
+
+  item.addEventListener("click", function(){increaseQuantity(increaseIndex)})
+  increaseIndex++;
+}
+
+
+for (let item of decrease) {
+  console.log(item, "here inside decrease");
+  item.addEventListener("click", decreaseQuantity);
+}
+
+
+// for (let item of countElement) {
+//   console.log(item, "here inside increase");
+//   item.addEventListener("click", increaseQuantity);
+// }
+
+// decrease.addEventListener("click", decreaseQuantity);
+
+function increaseQuantity(index) {
+  console.log("++++");
+  let count = countElement.innerText;
+  count++;
+  countElement.innerText = count;
+  console.log("index is", index)
+}
+
+function decreaseQuantity() {
+  console.log("-----");
+
+  let count = countElement.innerText;
+  count--;
+  countElement.innerText = count;
+}
+
+//Redirection logic on clicking explore menu
+
+// let exploreButton = document.getElementById("explore-div");
+
+// exploreButton.addEventListener("click", () => {
+//   location.href = "product.html";
+// });
+
+/// Write logic for registration here//////////////////
+/////////////////////////////////////////////////////////
+
+// let registerForm = document.querySelector("#signupForm");
+// let phone = document.querySelector("#phone");
+// let email = document.querySelector("#email");
+// let password = document.querySelector("#pass");
+
+// registerForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   let user_register = {
+//     mobile: phone.value,
+//     email: email.value,
+//     password: password.value,
+//   };
+
+//   // send the user data to the API
+//   fetch("https://narrow-internal-record.glitch.me/users", {
+//     method: "POST",
+//     body: JSON.stringify(user_register),
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   })
+//     .then((response) => response.json())
+//     .then((data) => {
+//       // do something with the response data, such as redirecting to a success page
+//       console.log(data);
+//     })
+//     .catch((error) => {
+//       // handle any errors that occur during the registration process
+//       console.error(error);
+//     });
+//});
