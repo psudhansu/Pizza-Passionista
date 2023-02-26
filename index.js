@@ -431,11 +431,28 @@ function displaydata3() {
   let totalP = document.createElement("h2")
   totalP.textContent = `Subtotal‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ${totalPrice}.00`
   totalP.setAttribute("class", "totalP")
+
+  let button = document.createElement("button")
+  button.textContent = "CHECKOUT"
+  button.addEventListener('click',()=>{
+
+    // authentication
+    let arr7 = JSON.parse(localStorage.getItem('userlogin'))||[];
+    if(arr7.length == 0){
+      alert('Please Login First to place order');
+    }
+    else{
+      window.location.replace('cart.html')
+    }
+    
+  })
+  button.setAttribute("class", "button")
   let a = document.createElement("a")
   a.textContent = "CHECKOUT"
   a.setAttribute("class", "button")
   a.setAttribute("href","cart.html")
   
+
 
   total.append(totalP, a)
 

@@ -1,10 +1,3 @@
-/* ///******** */
-
-
-
-
-
-
 
 
 #menu-bar{
@@ -18,7 +11,6 @@
     padding-bottom: 12px;
     font-family: proxima-nova,sans-serif;
     background-color: white;
-    
     
     
 }
@@ -74,7 +66,6 @@
            font-size: 18px;
        }
    }
-
 
 #nav-top {
     display: flex;
@@ -293,6 +284,7 @@
     font-family: 'Fira Sans Condensed', sans-serif;
 }
 
+
 #product-container{
     display: flex;
     
@@ -483,6 +475,12 @@ font-size: 13px;
    cursor: pointer;
    transition-duration: 0.5s;
    font-family: 'Fira Sans Condensed', sans-serif;
+
+ width: 70%;
+ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+#image{
+width: 100%;
 }
 
 /* *********** */ 
@@ -527,6 +525,7 @@ font-size: 13px;
     
 
 }
+
 
 #footerlogo h1 {
     font-family: 'Secular One', sans-serif;
