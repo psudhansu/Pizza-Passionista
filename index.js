@@ -326,7 +326,7 @@ function displaydata3() {
 
 
 }
-=======
+
 const url = "https://striped-telling-dryer.glitch.me/pizza"
 
 let container = document.querySelector("#container")
