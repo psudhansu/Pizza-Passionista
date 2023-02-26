@@ -74,6 +74,9 @@
 
 
     let tbody = document.querySelector('tbody');
+
+
+
     function append(data){
 
 
@@ -103,8 +106,19 @@
 
 
         tbody.innerHTML = ""
-        data.forEach((element) => {
-            let tr = document.createElement('tr');
+        data.forEach((eleement) => {
+            // console.log("order: "+JSON.stringify(eleement));
+            let element = eleement[0];
+            // console.log("after:"+typeof element)
+            // console.log(typeof element);
+            for(let i=0;i<eleement.length;i++){
+                let element = eleement[i]
+
+
+
+
+
+                let tr = document.createElement('tr');
             let td1 = document.createElement('td');
             td1.textContent = element.id;
             
@@ -161,6 +175,8 @@
             td6.append(select);
             tr.append(td1,td2,td3,td4,td5,td6);
             tbody.append(tr);
+            }
+            
         });
     }
     

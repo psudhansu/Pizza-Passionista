@@ -24,15 +24,15 @@ function closeNavright() {
 
 
 
-  console.log("in product open nav right");
-  document.getElementById("mySidenavRight").style.width = "350px";
-  document.getElementById("mySidenavRight").style.display = "block";
-}
+//   console.log("in product open nav right");
+//   document.getElementById("mySidenavRight").style.width = "350px";
+//   document.getElementById("mySidenavRight").style.display = "block";
+// }
 
 function closeNavright() {
   document.getElementById("mySidenavRight").style.width = "0";
   document.getElementById("mySidenavRight").style.display = "none";
-
+}
 // profile name
 
 function pro() {

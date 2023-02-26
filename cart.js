@@ -19,6 +19,47 @@ function closeNavright() {
 ////  signup
 
 
+// profile name
+
+function pro() {
+  let name = document.getElementById('account');
+  let chk = document.querySelector('.profile-text');
+  let arr = JSON.parse(localStorage.getItem('userlogin')) || [];
+  if (arr.length != 0) {
+      name.textContent = arr[0].name;
+      chk.textContent = "Welcome back👋";
+  }
+}
+pro();
+
+
+// logout button
+
+let arr5 = JSON.parse(localStorage.getItem('userlogin')) || [];
+
+if (arr5.length != 0) {
+    let log = document.querySelector('.socialbutton');
+    let html = `<div type="button" class="google" style="margin-left: 15px">
+    <button class="red-google" onclick="logouttt()">
+        <span>logout</span>
+    </button>
+</div>`
+log.innerHTML += html;
+
+let d = document.querySelector('.loginForm p');
+d.innerHTML = "";
+d.textContent = "Hello "+arr5[0].name
+
+function logouttt(){
+    alert("You Want to Logout");
+    let arr = [];
+    localStorage.setItem('userlogin',JSON.stringify(arr));
+    pro();
+}
+
+
+}
+
 
 
 
