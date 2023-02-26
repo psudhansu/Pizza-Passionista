@@ -139,9 +139,14 @@ function total(num){
         let data = await api.json();
         let pro = document.getElementById('revenue');
         let sum  = 0;
-        for(let i=0;i<data.length;i++){
-            sum += (+data[i].price)
+        for(let i=1;i<data.length;i++){
+
+            sum += (+data[0].price)*(+data[0].quantity)
+            console.log(data[0].price)
+            console.log(data[0].quantity)
+            
         }
+        console.log(data)
         pro.textContent = sum
     }
 </script>
