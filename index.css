@@ -1,3 +1,10 @@
+/* ///******** */
+
+
+
+
+
+
 
 
 #menu-bar{
@@ -11,6 +18,7 @@
     padding-bottom: 12px;
     font-family: proxima-nova,sans-serif;
     background-color: white;
+    
     
     
 }
@@ -66,6 +74,7 @@
            font-size: 18px;
        }
    }
+
 
 #nav-top {
     display: flex;
@@ -284,7 +293,6 @@
     font-family: 'Fira Sans Condensed', sans-serif;
 }
 
-
 #product-container{
     display: flex;
     
@@ -322,9 +330,9 @@ cursor: pointer;
     
     /* box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px; */
     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
-    height: 420px;
+    height: 390px;
     
-    margin-top: 70px;
+    margin-top: 60px;
     margin-left: 40px;
     overflow: scroll; 
     padding: 20px;
@@ -338,7 +346,7 @@ cursor: pointer;
 }
 #price-container{
     /* box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset; */
-    height: 110px;
+    height: 90px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
     
     margin-top: -20px;
@@ -475,12 +483,6 @@ font-size: 13px;
    cursor: pointer;
    transition-duration: 0.5s;
    font-family: 'Fira Sans Condensed', sans-serif;
-
- width: 70%;
- box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-}
-#image{
-width: 100%;
 }
 
 /* *********** */ 
@@ -525,7 +527,6 @@ width: 100%;
     
 
 }
-
 
 #footerlogo h1 {
     font-family: 'Secular One', sans-serif;
