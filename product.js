@@ -1,12 +1,13 @@
 function openNav() {
     document.getElementById("mySidenav").style.width = "350px";
+  console.log("in product open ");
+  document.getElementById("mySidenav").style.width = "350px";
+
 }
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
-
-
 
 function openNavright() {
     document.getElementById("mySidenavRight").style.width = "350px";
@@ -22,6 +23,15 @@ function closeNavright() {
 }
 
 
+
+  console.log("in product open nav right");
+  document.getElementById("mySidenavRight").style.width = "350px";
+  document.getElementById("mySidenavRight").style.display = "block";
+}
+
+function closeNavright() {
+  document.getElementById("mySidenavRight").style.width = "0";
+  document.getElementById("mySidenavRight").style.display = "none";
 
 // profile name
 
