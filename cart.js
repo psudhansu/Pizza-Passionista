@@ -149,6 +149,7 @@ login.addEventListener("click", () => {
 
 let orderData = JSON.parse(localStorage.getItem("cart")) || [];
 
+
 let showCart = document.getElementById("show-cart-items");
 
 fetchAndRenderCart(orderData);
@@ -162,10 +163,11 @@ function fetchAndRenderCart(data) {
    <img src="https://pizzaonline.dominos.co.in/static/assets/cart_empty.png" id="empty-img">
    <div class="empty-text"><span id="empty-text-1">Your Cart is Empty</span><br><br><span class="empty-text-2">Please add some items from the menu.</span></div>
    <div>
-      <div id="explore-div"><button id="explore"><span>Explore Menu</span></button></div>
+      <div id="explore-div"><button id="explore" onclick="myFunction()" >Explore Menu</button></div>
    </div>
 </div>
 `;
+
     return;
   }
 
@@ -212,7 +214,9 @@ function getCard(item) {
                                   item.quantity * item.price
                                 }</span></div>
                                 </div>
-                                <div id="quantity-change">
+                                <div class="quantity-change"><div class="identity" style="display:none">${
+                                  item.id
+                                }</div>
                                     <div class="decrease"> <img src="https://pizzaonline.dominos.co.in/static/assets/icons/minus.svg" alt=""></div>
                                     |<div class="count">${item.quantity}</div> |
                                     <div class="increase"><img src="https://pizzaonline.dominos.co.in/static/assets/icons/plus.svg" alt=""></div>
@@ -224,102 +228,171 @@ function getCard(item) {
                         `;
 }
 
-///Calculating final total
-
-let taxAndCharges = document.getElementById("total-tax");
-let tax = `₹ ${(18 / 100) * 100}`;
-taxAndCharges.innerText = tax;
-
-let grandTotal = document.getElementById("grand");
-let grand = 1000 - 100;
-grandTotal.innerText = `₹ ${grand}`;
-
 //// Increasing and decreasing quantity
 
-let countElement = document.getElementsByClassName("count");
+let quantities = document.getElementsByClassName("quantity-change");
 
-let increase = document.getElementsByClassName("increase");
+for (let idx = 0; idx < quantities.length; idx++) {
+  let quantity = quantities[idx];
+  "quanity is", quantity;
 
-let decrease = document.getElementsByClassName("decrease");
+  //// logic for increase quantity
+  let increaseElem = quantity.getElementsByClassName("increase")[0];
 
-let increaseIndex = 0;
+  increaseElem.addEventListener("click", increaseMyValue, false);
 
-for (let item of increase) {
-  console.log(item, "here inside increase",increaseIndex)
+  function increaseMyValue() {
+    let val = quantity.getElementsByClassName("count")[0];
+    let id = quantity.getElementsByClassName("identity")[0];
 
-  item.addEventListener("click", function(){increaseQuantity(increaseIndex)})
-  increaseIndex++;
+    currentId = +id.innerHTML;
+
+    let currentVal = +val.innerHTML;
+
+    currentVal += 1;
+    quantity.getElementsByClassName("count")[0].innerHTML = currentVal;
+
+    //// setting getting in LS
+
+    modifyLS(currentId, currentVal);
+  }
+
+  /// logic for decrease quantity
+
+  let decreaseElem = quantity.getElementsByClassName("decrease")[0];
+
+  decreaseElem.addEventListener("click", decreaseMyValue, false);
+
+  function decreaseMyValue() {
+    let val = quantity.getElementsByClassName("count")[0];
+
+    let currentVal = +val.innerHTML;
+
+    currentVal -= 1;
+
+    let id = quantity.getElementsByClassName("identity")[0];
+
+    currentId = +id.innerHTML;
+
+    if (currentVal < 1) {
+      let alertItem = confirm("Are you sure you want to remove this item?");
+
+      if (alertItem == true) {
+        //whatever you want to do
+        console.log("working");
+        removefromDOMandLS(currentId);
+        //////////////////////////////////******************************************//////////////
+        return;
+      }
+    }
+    quantity.getElementsByClassName("count")[0].innerHTML = currentVal;
+
+    modifyLS(currentId, currentVal);
+  }
+
+  //// modify cart values
+
+  function modifyLS(id, newQuantity) {
+    let orderDataNew = JSON.parse(localStorage.getItem("cart")) || [];
+
+    orderDataNew.forEach((element, index) => {
+      if (element.id === id) {
+        element.quantity = newQuantity;
+        location.reload();
+      }
+    });
+    localStorage.setItem("cart", JSON.stringify(orderDataNew));
+    //totalBill(orderDataNew)
+  }
 }
 
+//// function for removing from LS and DOM
 
-for (let item of decrease) {
-  console.log(item, "here inside decrease");
-  item.addEventListener("click", decreaseQuantity);
+function removefromDOMandLS(Id) {
+  let orderDataNew = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let updatedData = orderDataNew.filter((element, index) => {
+    if (element.id === Id) {
+      return false;
+    }
+    return true;
+  });
+  localStorage.setItem("cart", JSON.stringify(updatedData));
+  location.reload();
 }
 
+///Calculating final total
 
-// for (let item of countElement) {
-//   console.log(item, "here inside increase");
-//   item.addEventListener("click", increaseQuantity);
-// }
+let billDiv = document.querySelector(".bill");
 
-// decrease.addEventListener("click", decreaseQuantity);
+function totalBill() {
+  let total = 0;
+  orderData.forEach((element) => {
+    total += element.price * element.quantity;
+  });
 
-function increaseQuantity(index) {
-  console.log("++++");
-  let count = countElement.innerText;
-  count++;
-  countElement.innerText = count;
-  console.log("index is", index)
+  let subTotal = document.getElementById("subTotalNow");
+  subTotal.innerText = `₹ ${total}`;
+
+  let taxAndCharges = document.getElementById("total-tax");
+  let tax = +((18 / 100) * total).toFixed(2);
+
+  taxAndCharges.innerText = `₹ ${tax}`;
+
+  let grandTotal = document.getElementById("grand");
+
+  let discount = document.getElementById("discount");
+  let discountAmt = 0;
+
+  if (orderData !== []) {
+    discountAmt = 100;
+  }
+  discount.innerText = `₹ ${discountAmt}`;
+
+  let grand = total - discountAmt + tax;
+
+  if (orderData.length === 0) {
+    grand = 0;
+  }
+  grandTotal.innerText = `₹ ${grand}`;
 }
 
-function decreaseQuantity() {
-  console.log("-----");
+totalBill(orderData); // calling total bill here
 
-  let count = countElement.innerText;
-  count--;
-  countElement.innerText = count;
+//// place order api call - POST request
+
+let placeOrderButton = document.querySelector("#place-order");
+
+placeOrderButton.addEventListener("click", placeOrderFunction);
+
+const orderAPI = "https://narrow-internal-record.glitch.me/orders";
+
+let orderArray = JSON.parse(localStorage.getItem("cart")) || [];
+
+for (let i = 0; i < orderArray.length; i++) {
+  orderArray[i]["status"] = "Order Placed";
+  orderArray[i]["id"]++;
+}
+
+function placeOrderFunction() {
+  console.log("working");
+  fetch(orderAPI, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(orderArray),
+  })
+    .then((response) => response.text())
+    .then((result) => {
+      console.log(result);
+      localStorage.setItem("cart", JSON.stringify(null));
+      location.href = "/status.html";
+    })
+    .catch((error) => console.log("error", error));
 }
 
 //Redirection logic on clicking explore menu
 
-// let exploreButton = document.getElementById("explore-div");
+function myFunction() {
+  location.href = "index.html";
+}
 
-// exploreButton.addEventListener("click", () => {
-//   location.href = "product.html";
-// });
-
-/// Write logic for registration here//////////////////
-/////////////////////////////////////////////////////////
-
-// let registerForm = document.querySelector("#signupForm");
-// let phone = document.querySelector("#phone");
-// let email = document.querySelector("#email");
-// let password = document.querySelector("#pass");
-
-// registerForm.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   let user_register = {
-//     mobile: phone.value,
-//     email: email.value,
-//     password: password.value,
-//   };
-
-//   // send the user data to the API
-//   fetch("https://narrow-internal-record.glitch.me/users", {
-//     method: "POST",
-//     body: JSON.stringify(user_register),
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   })
-//     .then((response) => response.json())
-//     .then((data) => {
-//       // do something with the response data, such as redirecting to a success page
-//       console.log(data);
-//     })
-//     .catch((error) => {
-//       // handle any errors that occur during the registration process
-//       console.error(error);
-//     });
-//});
