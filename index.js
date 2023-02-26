@@ -1,5 +1,7 @@
 
 const url = "https://striped-telling-dryer.glitch.me/pizza"
+const non_veg = "https://striped-telling-dryer.glitch.me/pizza?category=Non-Veg"
+const vege = "https://striped-telling-dryer.glitch.me/pizza?category=Veg"
 
 let container = document.querySelector("#container")
 let cartContainer = document.querySelector("#cart-container")
@@ -12,9 +14,15 @@ let totalArr = []
 
 let Data = []
 
-var totalPrice = 0
+let arr2 = JSON.parse(localStorage.getItem("total"))||[]
+let bag1 = 0
+ for(let i=0;i<arr2.length;i++){
+ bag1 = bag1+arr2[i]
+ }
 
-var length=0
+ var totalPrice = bag1
+
+
 displaydata3()
 
 
@@ -23,12 +31,59 @@ displaydata3()
 
 window.addEventListener("load", () => {
   fetchData(url)
+
+  var bs = document.querySelector("#BS")
+  bs.style.color = "#6c9bb3"
+  bs.style.borderBottom = '2px solid #82bb37'
   
   if (cartContainer.innerHTML == "") {
 
     displaydata2()
   }
+
+
+  let nonvpizza = document.querySelector("#non-veg")
+  nonvpizza.addEventListener("click",function(){
+    fetchData(non_veg)
+    nonvpizza.style.color = "#6c9bb3"
+    nonvpizza.style.borderBottom = '2px solid #82bb37'
+   
+    vegpizza.style.color = 'unset'
+    vegpizza.style.borderBottom = "none"
+
+    bs.style.color = "unset"
+  bs.style.borderBottom = 'none'
+
+    
+  })
+
+  let vegpizza = document.querySelector("#veg")
+  vegpizza.addEventListener("click",function(){
+    fetchData(vege)
+    vegpizza.style.color = "#6c9bb3"
+    vegpizza.style.borderBottom = '2px solid #82bb37'
+   
+    nonvpizza.style.color = "unset"
+    nonvpizza.style.borderBottom = 'none'
+
+    bs.style.color = "unset"
+  bs.style.borderBottom = 'none'
+    
+  })
+
   
+  bs.addEventListener("click",function(){
+  fetchData(url)
+  bs.style.color = "#6c9bb3"
+  bs.style.borderBottom = '2px solid #82bb37'
+
+  vegpizza.style.color = "unset"
+  vegpizza.style.borderBottom = 'none'
+ 
+  nonvpizza.style.color = "unset"
+  nonvpizza.style.borderBottom = 'none'
+
+})
 
   
 
@@ -49,9 +104,10 @@ function fetchData(params) {
           category: e.category,
           price: e.price,
           id: e.id
-
+         
         }
       })
+      
       displayData(Data)
       console.log(aka)
     })
@@ -59,6 +115,23 @@ function fetchData(params) {
       console.log(error)
     })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function displayData(data) {
 
@@ -139,14 +212,7 @@ function displayData(data) {
 
     
     
-    let total=Number(0)
-    cartData.forEach(function(ele){
-        p=Number(ele.price)
-        total=total+p
-    })
-    // document.querySelector("#hh22").innerText="Total price is: "+total
-    console.log(total)
-//**** */
+    
       
 
 let isPresent = false
@@ -158,31 +224,35 @@ let isPresent = false
         }
       }
       if (isPresent == true) {
-        // alert("Product already in the cart")
+        alert("Product already in the cart")
       } else {
         cartData.push(el)
         localStorage.setItem("cart", JSON.stringify(cartData))
         // alert("Product added to The cart")
         let orderData = JSON.parse(localStorage.getItem("cart")) || []
         displaydata(orderData)
+     
+    //     let bag = 0
+    // cartData.forEach(function(ele){
+    //     bag=bag+Number(ele.price)
+    //     totalPrice=bag
 
-        let total=Number(0)
-    cartData.forEach(function(ele){
-        p=Number(ele.price)
-        total=total+p
-    })
+      
+    // })
+    
     // document.querySelector("#hh22").innerText="Total price is: "+total
-    console.log(total)
+    // console.log(totalPrice)
+    
         
-        // let totalArr = JSON.parse(localStorage.getItem("total")) || []
-        // totalArr.push(Number(el.price))
-        // var bag = 0
-        // for (let i = 0; i < totalArr.length; i++) {
-        //   bag = bag + totalArr[i]
-        // }
-
-        // totalPrice = bag
-        
+        let totalArr = JSON.parse(localStorage.getItem("total")) || []
+        totalArr.push(Number(el.price))
+        var bag = 0
+        for (let i = 0; i < totalArr.length; i++) {
+          bag = bag + totalArr[i]
+        }
+console.log(totalArr)
+        totalPrice = bag
+        localStorage.setItem("total", JSON.stringify(totalArr))
         
         
         // let done = localStorage.setItem("total", JSON.stringify(totalArr))
@@ -261,6 +331,8 @@ function displaydata(data) {
 
 
 
+   let cplus = document.createElement("div")
+   cplus.setAttribute("id","cplus")
 
 
     let count = document.createElement("span")
@@ -268,26 +340,51 @@ function displaydata(data) {
 
     let plus = document.createElement("button")
     plus.textContent = "+"
+    
     plus.addEventListener("click",function(){
       count.textContent = Number(count.textContent) + Number(1)
-      
+
+
+      // var orderData = JSON.parse(localStorage.getItem("cart")) || []
+      // totalPrice = totalPrice + Number(el.price)
+      // console.log(totalPrice)
+      // localStorage.setItem("total", JSON.stringify(totalPrice))
+      //   localStorage.setItem("cart", JSON.stringify(orderData))
+      //   // displaydata(orderData)
+      //   displaydata3()
+
     })
     
     let minus = document.createElement("button")
+
       minus.textContent = "-"
     minus.addEventListener("click",function(){
       count.textContent -= Number(1)
       var orderData = JSON.parse(localStorage.getItem("cart")) || []
+      // totalPrice = totalPrice - Number(el.price)
+      // console.log(totalPrice)
+      // localStorage.setItem("total", JSON.stringify(totalPrice))
+      //   localStorage.setItem("cart", JSON.stringify(orderData))
+      //   // displaydata(orderData)
+      //   displaydata3()
 
+
+      
       if(count.textContent<1){
-        orderData.splice(i,1)
         
+        orderData.splice(i,1)
+        totalPrice = totalPrice - el.price
+        localStorage.setItem("total", JSON.stringify(totalPrice))
         localStorage.setItem("cart", JSON.stringify(orderData))
-        window.location.reload()
+        displaydata(orderData)
+        if (cartContainer.innerHTML == "") {
+
+          displaydata2()
+        }
         
         console.log('done')
       }
-      
+      displaydata3()
 
     })
     
@@ -295,8 +392,8 @@ function displaydata(data) {
 
 
 
-
-    cart.append(img, prc, nam, desc,minus ,count,plus)
+    cplus.append(minus,count,plus)
+    cart.append(img, prc, nam, desc,cplus)
     cartContainer.append(cart)
 
 
@@ -334,11 +431,13 @@ function displaydata3() {
   let totalP = document.createElement("h2")
   totalP.textContent = `Subtotal‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ${totalPrice}.00`
   totalP.setAttribute("class", "totalP")
-  let button = document.createElement("button")
-  button.textContent = "CHECKOUT"
-  button.setAttribute("class", "button")
+  let a = document.createElement("a")
+  a.textContent = "CHECKOUT"
+  a.setAttribute("class", "button")
+  a.setAttribute("href","cart.html")
+  
 
-  total.append(totalP, button)
+  total.append(totalP, a)
 
   priceContainer.append(total)
 
@@ -350,3 +449,113 @@ function displaydata3() {
 
 
 }
+
+
+
+
+
+//chandrakala
+// ***********
+
+function openNav() {
+  console.log("in product open ");
+  document.getElementById("mySidenav").style.width = "350px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+function openNavright() {
+  console.log("in product open nav right");
+  document.getElementById("mySidenavRight").style.width = "350px";
+  document.getElementById("mySidenavRight").style.display = "block";
+}
+
+function closeNavright() {
+  document.getElementById("mySidenavRight").style.width = "0";
+  document.getElementById("mySidenavRight").style.display = "none";
+
+  console.log("working in close");
+}
+
+////  signup
+
+let signupElement = document.getElementById("signup");
+
+signupElement.addEventListener("click", () => {
+  let formDiv = document.getElementById("form-here");
+
+  formDiv.innerHTML = `<h4>Sign Up for Free</h4>
+  <form action="/" id="signupForm">
+                
+                    <table>
+                <tr>
+                                <td>
+                                    <label>
+                                        Email <span class="req">*</span>
+                                    </label>
+                            </td>
+                            <td>
+                                <input type="email" required autocomplete="off" id="email" />
+                            </td>
+                            </tr>
+                            <tr>
+                                <td>Phone<span class="req">*</span></td>
+                                <td><input type="number" required autocomplete="off" id="phone"  /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>
+                                        Create Password<span class="req">*</span>
+                                    </label>
+                            </td>
+                            <td><input type="password" required autocomplete="off" id="pass" /></td>
+                            </tr>
+                            </table>
+                            <button type="submit" class="button1" class="signupbutton">Sign Up</button>
+                </form>`;
+});
+
+////  login
+
+let login = document.getElementById("login");
+
+login.addEventListener("click", () => {
+  let formDiv = document.getElementById("form-here");
+
+  formDiv.innerHTML = ` <div id="logindiv">
+                <h4>Welcome Back!</h4>
+                <form action="/" method="post" id="loginForm">
+                    <table>
+                        <tr>
+                            <td><label>
+                                    Email <span class="req">*</span>
+                                </label>
+                                </td>
+                                <td>
+                                    <input type="email" required id="enteremail" />
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>
+                                            Password<span class="req">*</span>
+                                        </label>
+                                </td>
+                                <td>
+                                    <input type="password" required autocomplete="off" id="enterpass" />
+                                </td>
+                                </tr>
+                                </table>
+                    <button class="button1" class="loginbutton" />Log In</button>
+                </form>
+                <p id="forgot"><a>Forgot_password</a></p>
+            </div>
+    
+`;
+});
+
+// ***************
+
+
