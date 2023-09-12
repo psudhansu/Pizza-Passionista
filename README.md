@@ -1,53 +1,37 @@
-# Nykaa Clone
+# Domino's Clone
 
 <div style="display: flex; justify-content: center; align-items: center;">
-  <img style="border-radius: 10px" src="https://cdn.iconscout.com/icon/free/png-256/free-nykaa-3384872-2822953.png?f=webp&w=256" alt="error">
+  <img style="border-radius: 10px" src="https://png.pngitem.com/pimgs/s/195-1956278_dominos-pizza-logo-png-transparent-png.png" height="100" alt="error">
+  
 </div>
 
 
-**Nykaa is one of India's leading e-commerce platforms offering a wide range of products.**
+**Domono's provides pizza delivery and carryout services as well as dine-in services through its restaurants.**
 
 
-## Deployment Link - https://lumina-two.vercel.app/
-## Backend Deployment Link - https://lumina-backend.onrender.com
+## Deployment Link -  https://amazing-alfajores-9f774e.netlify.app
 
 ## Tech Stack
 
-**Client:** React.js | Redux | Chakra UI 
+**Client:** Javascript | HTML | CSS
 
-**Server:** Node.js | Express.js | MongoDB  
+**Server:** https://narrow-internal-record.glitch.me  
 
 **GitHub:** To maintain repository and version control.
 
-**VS Code:** To write React.js, CSS, Node.js, and Express.js code.
+**VS Code:** To write JavaScript, CSS, and HTML.
 
 **Microsoft Edge, Google Chrome & Mozilla Firefox:** To check the functionality and run the code.
 
-## Frontend Part
+## Pages
 
 - Home page
 - Login(Firebase) | Signup page | Logout
 - Product Page
 - Cart Page 
-- Search Functionality
 - Payment Page
+- Admin Page
   
-
-
-
-## Backend Part
-- Product data management
-- User data management
-
-
-## Database  
- - MongoDB
-
-## Features 
- -  Searching 
- -  Add to Cart
- -  Buy Now
- 
 
 
  GitHub: https://github.com/psudhansu/Pizza-Passionista
