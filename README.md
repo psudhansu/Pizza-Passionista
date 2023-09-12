@@ -26,7 +26,7 @@
 ## Pages
 
 - Home page
-- Login(Firebase) | Signup page | Logout
+- Login | Signup page | Logout
 - Product Page
 - Cart Page 
 - Payment Page
